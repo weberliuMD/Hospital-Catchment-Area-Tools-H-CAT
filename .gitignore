@@ -1,6 +1,7 @@
 # Ignore the APIKeys file
 APIKeys.py
 test.py
+localTest.py
 
 #Ignore cache folders
 __pycache__
