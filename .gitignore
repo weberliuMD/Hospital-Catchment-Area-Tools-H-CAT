@@ -1,0 +1,7 @@
+# Ignore the APIKeys file
+APIKeys.py
+test.py
+
+#Ignore cache folders
+__pycache__
+SampleDatabase
