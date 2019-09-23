@@ -4,13 +4,13 @@ import datasetPrep as dsp
 print("Where is the Original data file?")
 print("Ensure that you do not enter the location with quotation marks")
 print("Ensure also that there is only one header line")
-fileLocation = input()
+fileLocation = "./Admissions_data/HTD_Original.csv" #input()
 
 #load the file
 data = dsp.dataLoader(fileLocation)
 
 print("What is the column name for the patient ID?")
-IDCol = input()
+IDCol = "ID" #input()
 print("What is the column name for the patient address?")
-addressCol = input()
+addressCol = "Address" #input()
 
