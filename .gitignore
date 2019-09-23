@@ -2,3 +2,7 @@
 *.csv
 
 #API Keys
+
+
+#Python files
+__pycache__
