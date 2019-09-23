@@ -2,6 +2,17 @@ import pandas as pd
 import math
 
 def dataLoader (fileDir):
+    """
+    dataLoader(fileDir) takes in the location of the .csv file, and parses it into a dataframe object 
+    under the pandas library. It will then prompt an input for the proportion of lines to threshold before
+    removing a column.
+    This function will return a dataframe containing the thresholded dataset from a .csv file
+
+    Author: Weber Liu
+    Date first written: 23/09/2019
+    Date last updated: 23/09/2019
+    """
+
     data = pd.read_csv(fileDir)
     print(data.head())
     heightOfData = data.shape[0]
