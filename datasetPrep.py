@@ -13,7 +13,7 @@ def dataLoader (fileDir):
     dropProp = input()
     dropThresh = int(math.ceil(heightOfData*float(dropProp)))
     print("The threshold number of empty columns is", dropThresh, "which represents", dropProp,"amount of your data")
-    data.dropna(axis=1, how='any', thresh=dropThresh)
+    data = data.dropna(axis=1, how='any', thresh=dropThresh)
     numberOfColumns = data.shape[1]
     print("the number of columns are", numberOfColumns, "after removing empty columns at a", dropProp,"threshold")
     print(data.head())
