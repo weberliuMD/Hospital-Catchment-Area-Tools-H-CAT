@@ -14,6 +14,7 @@ DatasetPrep is a series of scripts, whose primary purpose is to prepare the orig
 * Patient data is NOT de-identified, and needs to be de-identified
 * Patient address data is separated across multiple columns
 * The database needs to be re-formatted into only PatientID and Address columns \(for use with DatasetGeocode\).
+
 DatasetPrep is primarily based on the Python library **Pandas**
 
 ## DatasetGeocode
