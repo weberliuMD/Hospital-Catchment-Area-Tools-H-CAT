@@ -1,3 +1,3 @@
-from DatasetPrep.dataLoader import dataLoader as dl
+from DatasetPrep import dataLoader as dl
 
-dl("./Admissions_data/HTD_Original.csv")
+data = dl.dataLoader("./Admissions_data/HTD_Original.csv")
