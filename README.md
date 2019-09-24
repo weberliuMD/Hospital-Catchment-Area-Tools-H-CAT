@@ -24,7 +24,7 @@ DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used wi
 - [ ] Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
 - [ ] Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
 - [ ] MAPQUEST developers Open Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
-- [ ] OpenStreetMaps(OSM) Nomatim Geocoder (https://nominatim.openstreetmap.org)
+- [ ] OpenStreetMaps(OSM) Nominatim Geocoder (https://nominatim.openstreetmap.org)
     - [ ] NetToolkit Geocoding via OSM (https://www.nettoolkit.com)
     - [ ] LocationIQ Geocoding via OSM (https://locationiq.com/)
     - [ ] OpenCageData Geocoding via OSM (https://opencagedata.com/)
