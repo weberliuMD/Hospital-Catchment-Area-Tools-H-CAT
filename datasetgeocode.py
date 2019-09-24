@@ -11,5 +11,5 @@ from dsg import yahoo_geocode as yahoo
 #Import API Keys
 import keys
 
-def gmaps_geocode(APIKey, Address):
-    return gmaps.gmaps_geocode(APIKey, Address)
+def gmaps_geocode(Address, APIKEY=keys.GMAPS_API_KEY,):
+    return gmaps.gmaps_geocode(Address, APIKEY)
