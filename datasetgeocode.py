@@ -56,6 +56,24 @@ def gmaps_geocode(Address, APIKEY=keys.GMAPS_APIKEY,):
     return gmaps.gmaps_geocode(Address, APIKEY)
 
 def gmaps_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None):
+    ''''
+    gmaps_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None) is a function developed to query the google Maps geocoding API.
+    This function takes in the argument of:
+    fileLocation - the location of the .csv file in the following format:
+    ------------------------------------------
+    |Patient identifier | Patient address    |
+    ------------------------------------------
+    |ID_001             | 123 Address st, ...|
+    (etc...)
+    ------------------------------------------
+    saveProgress - the number of geocodes conducted before a progress file is saved - this will occur alongside the live-save files
+    APIKEY - if an APIKEY is provided, it will be used. Otherwise, the APIKEY in keys.py will be used.
+
+    This batch geocoder has the dependency of the gmaps_geocode() function within this module.
+
+    Author: Weber Liu
+    Date Created: 25/09/2019
+    '''
     data = load_data(fileLocation)
     height = data.shape[0]
     geocodedOutput = pd.DataFrame()
