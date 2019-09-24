@@ -1,4 +1,4 @@
-# GeocodingTools
+# Geocoding Tools
 Python based scripts used to rapidly geocode hospital datasets.
 **Developed by Weber Liu, 2019**
 ## INTRODUCTION
