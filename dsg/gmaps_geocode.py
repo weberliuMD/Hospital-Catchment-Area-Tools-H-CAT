@@ -46,4 +46,4 @@ def gmaps_geocode(Address, APIKEY):
         df = df.drop(['index'], axis=1)
         return df
     else:
-        return "missing"
+        return r['status']
