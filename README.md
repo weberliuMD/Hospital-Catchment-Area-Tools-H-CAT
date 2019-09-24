@@ -38,6 +38,8 @@ DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used wi
 - [ ] Texas A&M (USA) Geoservices (http://geoservices.tamu.edu/Services/Geocode/WebService/)
 - [ ] TIGER USA Geocoding (http://www.tigergeocoder.com/)
 
+**This step requires the creation of a keys.py file in the root directory (here) to contain the API keys. It is important to keep your API keys either restricted or hidden**
+
 ## datasetrecombine (dsr)
 Following the Dataset separation by DatasetPrep, if necessary, this data will be recombined using the currently library.
 
