@@ -1,2 +1,2 @@
-def gmaps(APIKey, Address):
+def gmaps_geocode(APIKey, Address):
     return Address
