@@ -18,5 +18,4 @@ data = data.fillna(" ")
 data['completeAddress'] = data['Address']+", "+ data['Ward']+", "+data['District']+", "+data['City / Province']
 
 dataTrim = data[['ID', 'completeAddress']]
-
 export_csv = dataTrim.to_csv (r'./HTD_Trim.csv', index = False, header=True, encoding='utf_8_sig')
