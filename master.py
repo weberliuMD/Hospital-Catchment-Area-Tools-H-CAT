@@ -7,7 +7,7 @@ print("Ensure also that there is only one header line")
 fileLocation = "./Admissions_data/HTD_Original.csv"                 #input()
 
 #load the file
-data = dsp.dataLoader(fileLocation)
+data = dsp.load_data(fileLocation)
 
 print("What is the column name for the patient ID?")
 IDCol = "ID"                                                        #input()
