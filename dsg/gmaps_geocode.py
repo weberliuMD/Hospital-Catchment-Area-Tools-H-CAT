@@ -3,6 +3,23 @@ import json
 import pandas as pd
 
 def gmaps_geocode(Address, APIKEY):
+    '''
+    gmaps_geocode(Address, APIKEY) is a function developed to query the google Maps geocoding API.
+    This function takes in the argument of:
+    Address: The address of the patient, spaces allowed - fuzzy matching using Google's Algorithm
+    will clarify any issues. Provide as much detail as possible in the address.
+    APIKEY: The APIKEY as per google cloud console (a sign-up will be required).
+
+    The gmaps REST-API will return a JSON dataset, and from that, this application will determine if the address
+    were entered correctly (i.e. status 200 OK), and then interpret the data into:
+    - Formatted Address (can be used for further geocoding with alternative systems)
+    - individual address data
+    - Geometry (Latitude and Longitude)
+    This data is then returned as a DataFrame to the user.
+
+    Author: Weber Liu
+    Date Created: 25/09/2019
+    '''
     gmapsREST = "https://maps.googleapis.com/maps/api/geocode/json?address="
     webAddress = gmapsREST + Address + "&key=" + APIKEY
     print("Request sent to "+ webAddress)
