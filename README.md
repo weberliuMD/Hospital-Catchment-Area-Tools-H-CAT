@@ -9,7 +9,7 @@ GeocodingTools is separated into two separate packages:
 * DatasetRecombine
 The files do not have to be used together, however it is optimal if files ARE used in conjunction. Consult individual documentations to determine how the individual packages should be used.  
 
-## datasetprep
+## datasetprep (dsp)
 datasetprep is a series of scripts, whose primary purpose is to prepare the original hospital file dataset for use with the DatasetGeocode package. It deals with data where:
 * Patient data is NOT de-identified, and needs to be de-identified
 * Patient address data is separated across multiple columns
@@ -18,7 +18,7 @@ datasetprep is a series of scripts, whose primary purpose is to prepare the orig
 DatasetPrep is primarily based on the Python library **Pandas**
 Functions available in datasetprep includes *load_data(fileName)*
 
-## DatasetGeocode
+## datasetgeocode (dsg)
 DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used with various geocoding APIs. API keys may need to be provided. All returned data from these APIs will be provided in a formatted manner and returned as a .csv file. The APIs currently supported in DatasetGeocode include:
 - [ ] Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
 - [ ] Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
@@ -37,5 +37,7 @@ DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used wi
 - [ ] Texas A&M (USA) Geoservices (http://geoservices.tamu.edu/Services/Geocode/WebService/)
 - [ ] TIGER USA Geocoding (http://www.tigergeocoder.com/)
 
-## DatasetRecombine
+## datasetrecombine (dsr)
 Following the Dataset separation by DatasetPrep, if necessary, this data will be recombined using the currently library.
+
+## datasetnetworkanalysis(dsna)
