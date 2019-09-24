@@ -20,9 +20,16 @@ Functions available in datasetprep includes *load_data(fileName)*
 
 ## DatasetGeocode
 DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used with various geocoding APIs. API keys may need to be provided. All returned data from these APIs will be provided in a formatted manner and returned as a .csv file. The APIs currently supported in DatasetGeocode include:
-* Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
-* Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
-* MAPQUEST developers Open Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
+- [ ] Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
+- [ ] Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
+- [ ] MAPQUEST developers Open Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
+- [ ] OpenStreetMaps(OSM) Nomatim Geocoder (https://nominatim.openstreetmap.org)
+    - [ ] NetToolkit Geocoding via OSM (https://www.nettoolkit.com)
+    - [ ] LocationIQ Geocoding via OSM (https://locationiq.com/)
+    - [ ] OpenCageData Geocoding via OSM (https://opencagedata.com/)
+- [ ] HERE Geocoding API (https://developer.here.com/documentation/geocoder/topics/what-is.html)
+- [ ] ARCGIS REST API (https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm)
+- [ ] TOMTOM Geocoding API (https://developer.tomtom.com/search-api/search-api-documentation-geocoding/geocode)
 
 ## DatasetRecombine
 Following the Dataset separation by DatasetPrep, if necessary, this data will be recombined using the currently library.
