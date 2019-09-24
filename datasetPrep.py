@@ -1,9 +1,9 @@
 import pandas as pd
 import math
 
-def dataLoader (fileDir):
+def load_data (fileDir):
     """
-    dataLoader(fileDir) takes in the location of the .csv file, and parses it into a dataframe object 
+    load_data(fileDir) takes in the location of the .csv file, and parses it into a dataframe object 
     under the pandas library. It will then prompt an input for the proportion of lines to threshold before
     removing a column.
     This function will return a dataframe containing the thresholded dataset from a .csv file
