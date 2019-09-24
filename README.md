@@ -47,3 +47,20 @@ The datasetgeocode (dsg) toolkit will provide individual modules for **singular 
 Following the Dataset separation by DatasetPrep, if necessary, this data will be recombined using the current library.
 
 ## datasetnetworkanalysis(dsna)
+Network analysis is necessary to determine the travel-time from an address to a certain location (in this case, the travel time from the patient's residence or ward centroid to the hospital).
+Using ward centroids, we enhance the de-identification process and can use a Boolean to determine if an address lies within a pre-defined 30-minutes catchment area from the hospital, based on various APIs.
+Using addresses, we can enhance the precision on top of a boolean, and implement K-means clustering to more accurately determine a 2km radiusfrom the hospital. This will be implemented alongside the **catchmentareatools(catch)** module.
+The currently identified network analysis APIs which will be implemented include:
+- [ ] ESRI Network Analyst
+- [ ] Google Distance Matrix
+- [ ] Bing maps distance matrix
+- [ ] MapQuest RouteMatrix
+- [ ] OpenStreetMaps (OSM) 
+    - [ ] openrouteservice (https://openrouteservice.org/)
+    - [ ] open source routing machine (http://project-osrm.org/)
+    - [ ] BRouter (http://brouter.de/brouter/)
+    - [ ] YOUR NAvication (http://yournavigation.org/)
+    - [ ] Graphhopper(https://graphhopper.com/)
+
+
+## catchmentareatools(catch)
