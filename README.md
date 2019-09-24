@@ -10,7 +10,7 @@ GeocodingTools is separated into two separate packages:
 The files do not have to be used together, however it is optimal if files ARE used in conjunction. Consult individual documentations to determine how the individual packages should be used.  
 
 ## datasetprep
-DatasetPrep is a series of scripts, whose primary purpose is to prepare the original hospital file dataset for use with the DatasetGeocode package. It deals with data where:
+datasetprep is a series of scripts, whose primary purpose is to prepare the original hospital file dataset for use with the DatasetGeocode package. It deals with data where:
 * Patient data is NOT de-identified, and needs to be de-identified
 * Patient address data is separated across multiple columns
 * The database needs to be re-formatted into only PatientID and Address columns \(for use with DatasetGeocode\).
@@ -20,9 +20,9 @@ Functions available in datasetprep includes *load_data(fileName)*
 
 ## DatasetGeocode
 DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used with various geocoding APIs. API keys may need to be provided. All returned data from these APIs will be provided in a formatted manner and returned as a .csv file. The APIs currently supported in DatasetGeocode include:
-* Google Maps Geocoding API
-
-If you have requests to add more please contact me.
+* Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
+* Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
+* MAPQUEST developers Open Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
 
 ## DatasetRecombine
 Following the Dataset separation by DatasetPrep, if necessary, this data will be recombined using the currently library.
