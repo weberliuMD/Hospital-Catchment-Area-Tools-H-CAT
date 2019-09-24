@@ -54,3 +54,29 @@ def gmaps_geocode(Address, APIKEY=keys.GMAPS_APIKEY,):
     Date Created: 25/09/2019
     '''
     return gmaps.gmaps_geocode(Address, APIKEY)
+
+def gmaps_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None):
+    data = load_data(fileLocation)
+    height = data.shape[0]
+    geocodedOutput = pd.DataFrame()
+    print(height)
+    for i in range(height):
+        originalData = data.iloc[i]
+        od = pd.DataFrame(originalData).T
+        od = od.reset_index()
+        od = od.drop(['index'], axis=1)
+        try:
+            geocodedData = None
+            if APIKEY==None:
+                geocodedData = gmaps_geocode(data.iloc[i][1])
+            else:
+                geocodedData = gmaps_geocode(Address=data.iloc[i][1], APIKEY = APIKEY)
+            combinedData = pd.concat([od, geocodedData], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True)
+            print("Completed row", i)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_gmaps.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_gmaps_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
+        except:
+            print("Something went wrong, error was caught, moving on...")
