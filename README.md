@@ -16,6 +16,7 @@ DatasetPrep is a series of scripts, whose primary purpose is to prepare the orig
 * The database needs to be re-formatted into only PatientID and Address columns \(for use with DatasetGeocode\).
 
 DatasetPrep is primarily based on the Python library **Pandas**
+Functions available in DatasetPrep includes *load_data(fileName)*
 
 ## DatasetGeocode
 DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used with various geocoding APIs. API keys may need to be provided. All returned data from these APIs will be provided in a formatted manner and returned as a .csv file. The APIs currently supported in DatasetGeocode include:

@@ -30,3 +30,6 @@ def load_data (fileDir):
     print(data.head())
     return data
 
+def address_col(data, columns):
+
+def save_file(data, fileName, columns):
