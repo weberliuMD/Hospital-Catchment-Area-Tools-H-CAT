@@ -42,8 +42,11 @@ def gmaps_geocode(Address, APIKEY):
         df = df.assign(formatted_address = [formattedAddress])
         df = df.assign(latitude = [geometry['lat']])
         df = df.assign(longitude = [geometry['lng']])
+        df = df.assign(status = [r['status']])
         df = df.reset_index()
         df = df.drop(['index'], axis=1)
         return df
     else:
-        return r['status']
+        df = pd.DataFrame()
+        df = df.assign(status = [r['status']])
+        return df
