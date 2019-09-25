@@ -27,18 +27,18 @@ Functions available in datasetprep includes *load_data(fileName)*
 
 ## datasetgeocode (dsg)
 DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used with various geocoding APIs. API keys may need to be provided. All returned data from these APIs will be provided in a formatted manner and returned as a .csv file. The APIs currently supported in DatasetGeocode include:
-- [x] Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
-- [x] Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
-- [x] Mapquest (Verizon) developers Geocoding API (https://developer.mapquest.com/documentation/geocoding-api/)
-- [x] OpenStreetMaps(OSM) 
-    - [x] Nominatim Geocoder (https://nominatim.openstreetmap.org)
+- ✔ Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
+- ✔ Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
+- ✔ Mapquest (Verizon) developers Geocoding API (https://developer.mapquest.com/documentation/geocoding-api/)
+- ✔ OpenStreetMaps(OSM) 
+    - ✔ Nominatim Geocoder (https://nominatim.openstreetmap.org)
     - [ ] NetToolkit Geocoding via OSM (https://www.nettoolkit.com)
     - [ ] LocationIQ Geocoding via OSM (https://locationiq.com/)
     - [ ] OpenCageData Geocoding via OSM (https://opencagedata.com/)
-    - [x] Mapquest developers OPEN Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
-- [x] HERE Geocoding API (https://developer.here.com/documentation/geocoder/topics/what-is.html)
+    - ✔ Mapquest developers OPEN Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
+- ✔ HERE Geocoding API (https://developer.here.com/documentation/geocoder/topics/what-is.html)
 - ARCGIS REST API (https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm) - **PAID SERVICE**
-- [x] TOMTOM Geocoding API (https://developer.tomtom.com/search-api/search-api-documentation-geocoding/geocode)
+- ✔ TOMTOM Geocoding API (https://developer.tomtom.com/search-api/search-api-documentation-geocoding/geocode)
 - Yahoo! Maps Web Services Geocoding API (https://developer.yahoo.com/maps/rest/V1/geocode.html) - **DEPRECATED**
 - Melissa Geocoding (https://www.melissa.com/geocoding) - **PAID SERVICE**
 
