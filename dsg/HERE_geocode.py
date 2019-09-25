@@ -18,6 +18,7 @@ def here_geocode(Address, APP_ID, APP_CODE):
 
     Author: Weber Liu
     Date Created: 25/09/2019
+    Updated: 26/09/2019
     '''
 
     HEREREST = "https://geocoder.api.here.com/6.2/geocode.json?app_id="
@@ -30,11 +31,11 @@ def here_geocode(Address, APP_ID, APP_CODE):
         numResults = len(r[0]['Result'])
         df = pd.DataFrame()
         for i in range(numResults):
-            r = r[0]['Result'][i]['Location']
-            locationId = pd.DataFrame({'locationId':[r['LocationId']]}).add_suffix("_"+str(i))
-            lat = pd.DataFrame({'lat':[r['NavigationPosition'][0]['Latitude']]}).add_suffix("_"+str(i))
-            lng = pd.DataFrame({'lng':[r['NavigationPosition'][0]['Longitude']]}).add_suffix("_"+str(i))
-            Address = pd.DataFrame([r['Address']]).drop(['AdditionalData'], axis = 1).add_suffix("_"+str(i))
+            rr = r[0]['Result'][i]['Location']
+            locationId = pd.DataFrame({'locationId':[rr['LocationId']]}).add_suffix("_"+str(i))
+            lat = pd.DataFrame({'lat':[rr['NavigationPosition'][0]['Latitude']]}).add_suffix("_"+str(i))
+            lng = pd.DataFrame({'lng':[rr['NavigationPosition'][0]['Longitude']]}).add_suffix("_"+str(i))
+            Address = pd.DataFrame([rr['Address']]).drop(['AdditionalData'], axis = 1).add_suffix("_"+str(i))
             df = pd.concat([df, Address, locationId, lat, lng], axis = 1)
         statusCode = pd.DataFrame({'statusCode':['200']})
         df = pd.concat([df, statusCode], axis = 1)
