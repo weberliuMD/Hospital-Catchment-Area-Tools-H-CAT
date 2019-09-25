@@ -150,7 +150,8 @@ def OSM_batch_geocode(fileLocation, saveProgress = 200):
         try:
             geocodedData = OSM_geocode(Address=data.iloc[i][1])
             combinedData = pd.concat([od, geocodedData], axis=1)
-            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True)
+            # combinedData = od.join(geocodedData)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
             print("Completed row", i)
             export_csv = geocodedOutput.to_csv('./Geocoded_output_OSM.csv', index = False, header=True, encoding='utf_8_sig')
             if (i % saveProgress == 0):

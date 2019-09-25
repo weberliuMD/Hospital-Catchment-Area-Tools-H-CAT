@@ -34,10 +34,11 @@ def OSM_geocode(Address):
             dConcat = dConcat.add_suffix("_lvl"+str(removeLine))
             dConcat = dConcat.dropna(axis='columns')
             df = df.drop([removeLine])
-            df = pd.concat([df, dConcat], axis = 1)
+            df = df.join(dConcat, lsuffix="_lvl"+str(removeLine-1), rsuffix="_lvl"+str(removeLine))
+            # df = pd.concat([df, dConcat], axis = 1)
         df = df.assign(status = ["200"])
         return df
     else:
         df = pd.DataFrame()
-        df = df.assign(status = "Address not found")
+        df = df.assign(status = ["Address not found"])
         return df
