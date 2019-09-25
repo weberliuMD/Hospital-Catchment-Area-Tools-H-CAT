@@ -69,6 +69,7 @@ The currently identified network analysis APIs which will be implemented include
     - [ ] BRouter (http://brouter.de/brouter/)
     - [ ] YOUR NAvication (http://yournavigation.org/)
     - [ ] Graphhopper(https://graphhopper.com/)
+- [ ] Tomtom Routing API
 
 
 ## catchmentareatools(catch)
