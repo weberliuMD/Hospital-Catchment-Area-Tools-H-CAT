@@ -2,7 +2,7 @@
 # from dsg import ArcGIS_geocode as arcgis
 from dsg import bingmaps_geocode as bing
 from dsg import gmaps_geocode as gmaps
-# from dsg import here_geocode as here
+from dsg import HERE_geocode as here
 from dsg import mapquest_geocode as mq
 from dsg import OSM_geocode as osm
 # from dsg import tomtom_geocode as tomtom
@@ -265,7 +265,7 @@ def mapquest_open_geocode(Address, APIKEY=keys.MAPQUEST_APIKEY):
     '''
     return mq.mapquest_open_geocode(Address, APIKEY)
 
-def mapquest_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startPos = 0, endPos = None):
+def mapquest_open_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startPos = 0, endPos = None):
     ''''
     mapquest_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None) is a function developed to query the mapquest geocoding API.
     This function takes in the argument of:
@@ -322,7 +322,7 @@ def bing_geocode(Address, APIKEY=keys.BING_APIKEY):
     will clarify any issues. Provide as much detail as possible in the address.
     APIKEY: The APIKEY as per Bing Maps console (a sign-up will be required).
 
-    The gmaps REST-API will return a JSON dataset, and from that, this application will determine if the address
+    The BING REST-API will return a JSON dataset, and from that, this application will determine if the address
     were entered correctly (i.e. status 200 OK), and then interpret the data into:
     - Formatted Address (can be used for further geocoding with alternative systems)
     - Geometry (Latitude and Longitude)
@@ -379,6 +379,76 @@ def bing_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startPos =
             export_csv = geocodedOutput.to_csv('./Geocoded_output_bing.csv', index = False, header=True, encoding='utf_8_sig')
             if (i % saveProgress == 0):
                 fileName = "./Geocoded_output_bing_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
+        except:
+            print("Something went wrong, error was caught, moving on...")
+
+def here_geocode(Address, APP_ID = keys.HERE_APPID, APP_CODE = keys.HERE_APPCODE):
+    '''
+    here_geocode(Address) is a function developed to query the HERE geocoding API.
+    This function takes in the argument of:
+    Address: The address of the patient, spaces allowed - fuzzy matching using HERE's Algorithm
+    will clarify any issues. Provide as much detail as possible in the address.
+    APIKEY: The APIKEY as per HERE console (a sign-up will be required).
+
+    The HERE REST-API will return a JSON dataset, and from that, this application will determine if the address
+    were entered correctly (i.e. status 200 OK), and then interpret the data into:
+    - Formatted Address (can be used for further geocoding with alternative systems)
+    - Geometry (Latitude and Longitude)
+    - Confidence of thte address and geocoding system
+    This data is then returned as a DataFrame to the user.
+
+    Author: Weber Liu
+    Date Created: 25/09/2019
+    '''
+    return here.here_geocode(Address, APP_ID, APP_CODE)
+
+def here_batch_geocode(fileLocation, saveProgress = 200, APP_ID = None, APP_CODE = None, startPos = 0, endPos = None):
+    ''''
+    here_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None) is a function developed to query the HERE maps geocoding API.
+    This function takes in the argument of:
+    fileLocation - the location of the .csv file in the following format:
+    ------------------------------------------
+    |Patient identifier | Patient address    |
+    ------------------------------------------
+    |ID_001             | 123 Address st, ...|
+    (etc...)
+    ------------------------------------------
+    saveProgress - the number of geocodes conducted before a progress file is saved - this will occur alongside the live-save files
+    APP_ID - the APP_ID returned upon signing up for HERE
+    APP_CODE - the APP_CODE returned upon singing up for HERE
+
+    This batch geocoder has the dependency of the here_geocode() function within this module.
+
+    Author: Weber Liu
+    Date Created: 25/09/2019
+    '''
+    data = load_data(fileLocation)
+    height = data.shape[0]
+    if (startPos == 0):
+        geocodedOutput = pd.DataFrame()
+    else:
+        geocodedOutput = pd.read_csv("./Geocoded_output_here.csv")
+    if (endPos == None):
+        endPos = height
+        print("end position is", height)
+    for i in range(startPos, endPos):
+        originalData = data.iloc[i]
+        od = pd.DataFrame(originalData).T
+        od = od.reset_index()
+        od = od.drop(['index'], axis=1)
+        try:
+            geocodedData = None
+            if APP_ID==None and APP_CODE == None:
+                geocodedData = here_geocode(data.iloc[i][1])
+            else:
+                geocodedData = here_geocode(Address=data.iloc[i][1], APP_ID = APP_ID, APP_CODE = APP_CODE)
+            combinedData = pd.concat([od, geocodedData], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            print("Completed row", i)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_here.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_here_" + str(i) + "_PROGRESS.csv"
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
         except:
             print("Something went wrong, error was caught, moving on...")
