@@ -8,4 +8,4 @@ keys.py
 __pycache__
 
 #Temporary converted files
-.csv
+*.csv
