@@ -4,7 +4,7 @@ Python scripts used to prepare datasets for geocoding
 
 ## datasetgeocode (dsg)
 DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used with various geocoding APIs. API keys may need to be provided. All returned data from these APIs will be provided in a formatted manner and returned as a .csv file. The APIs currently supported in DatasetGeocode include:
-- [ ] Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
+- [s] Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
 - [ ] Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
 - [ ] MAPQUEST developers Open Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
 - [ ] OpenStreetMaps(OSM) Nominatim Geocoder (https://nominatim.openstreetmap.org)

@@ -28,7 +28,7 @@ Functions available in datasetprep includes *load_data(fileName)*
 ## datasetgeocode (dsg)
 DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used with various geocoding APIs. API keys may need to be provided. All returned data from these APIs will be provided in a formatted manner and returned as a .csv file. The APIs currently supported in DatasetGeocode include:
 - [x] Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
-- [ ] Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
+- [x] Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
 - [x] Mapquest (Verizon) developers Geocoding API (https://developer.mapquest.com/documentation/geocoding-api/)
 - [x] OpenStreetMaps(OSM) 
     - [x] Nominatim Geocoder (https://nominatim.openstreetmap.org)
