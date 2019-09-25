@@ -36,7 +36,7 @@ DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used wi
     - [ ] LocationIQ Geocoding via OSM (https://locationiq.com/)
     - [ ] OpenCageData Geocoding via OSM (https://opencagedata.com/)
     - [x] Mapquest developers OPEN Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
-- [ ] HERE Geocoding API (https://developer.here.com/documentation/geocoder/topics/what-is.html)
+- [x] HERE Geocoding API (https://developer.here.com/documentation/geocoder/topics/what-is.html)
 - [ ] ARCGIS REST API (https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm)
 - [ ] TOMTOM Geocoding API (https://developer.tomtom.com/search-api/search-api-documentation-geocoding/geocode)
 - [ ] Yahoo! Maps Web Services Geocoding API (https://developer.yahoo.com/maps/rest/V1/geocode.html)
