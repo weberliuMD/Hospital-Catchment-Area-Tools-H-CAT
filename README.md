@@ -59,7 +59,7 @@ Using addresses, we can enhance the precision on top of a boolean, and implement
 The currently identified network analysis APIs which will be implemented include:
 - [ ] ESRI Network Analyst
 - [ ] Google Distance Matrix
-- [ ] Bing maps distance matrix
+- [ ] Bing maps distance matrix (https://docs.microsoft.com/en-us/bingmaps/rest-services/routes/calculate-a-distance-matrix)
 - [ ] MapQuest RouteMatrix
 - [ ] OpenStreetMaps (OSM) 
     - [ ] openrouteservice (https://openrouteservice.org/)
