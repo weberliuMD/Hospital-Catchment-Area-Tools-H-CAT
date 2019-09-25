@@ -1,6 +1,6 @@
 #Import Geocoding API scripts
 # from dsg import ArcGIS_geocode as arcgis
-# from dsg import bingmaps_geocode as bing
+from dsg import bingmaps_geocode as bing
 from dsg import gmaps_geocode as gmaps
 # from dsg import here_geocode as here
 from dsg import mapquest_geocode as mq
@@ -210,6 +210,75 @@ def mapquest_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startP
     APIKEY - if an APIKEY is provided, it will be used. Otherwise, the APIKEY in keys.py will be used.
 
     This batch geocoder has the dependency of the mapquest_geocode() function within this module.
+
+    Author: Weber Liu
+    Date Created: 25/09/2019
+    '''
+    data = load_data(fileLocation)
+    height = data.shape[0]
+    if (startPos == 0):
+        geocodedOutput = pd.DataFrame()
+    else:
+        geocodedOutput = pd.read_csv("./Geocoded_output_mapquest.csv")
+    if (endPos == None):
+        endPos = height
+        print("end position is", height)
+    for i in range(startPos, endPos):
+        originalData = data.iloc[i]
+        od = pd.DataFrame(originalData).T
+        od = od.reset_index()
+        od = od.drop(['index'], axis=1)
+        try:
+            geocodedData = None
+            if APIKEY==None:
+                geocodedData = mapquest_geocode(data.iloc[i][1])
+            else:
+                geocodedData = mapquest_geocode(Address=data.iloc[i][1], APIKEY = APIKEY)
+            combinedData = pd.concat([od, geocodedData], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            print("Completed row", i)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_mapquest.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_mapquest_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
+        except:
+            print("Something went wrong, error was caught, moving on...")
+
+def bing_geocode(Address, APIKEY=keys.BING_APIKEY):
+    '''
+    bing_geocode(Address) is a function developed to query the Bing Maps geocoding API.
+    This function takes in the argument of:
+    Address: The address of the patient, spaces allowed - fuzzy matching using Bing's Algorithm
+    will clarify any issues. Provide as much detail as possible in the address.
+    APIKEY: The APIKEY as per Bing Maps console (a sign-up will be required).
+
+    The gmaps REST-API will return a JSON dataset, and from that, this application will determine if the address
+    were entered correctly (i.e. status 200 OK), and then interpret the data into:
+    - Formatted Address (can be used for further geocoding with alternative systems)
+    - Geometry (Latitude and Longitude)
+    - Confidence of thte address and geocoding system
+    This data is then returned as a DataFrame to the user.
+
+    Author: Weber Liu
+    Date Created: 25/09/2019
+    '''
+    return bing.bing_geocode(Address, APIKEY)
+
+def bing_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startPos = 0, endPos = None):
+    ''''
+    bing_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None) is a function developed to query the bing maps geocoding API.
+    This function takes in the argument of:
+    fileLocation - the location of the .csv file in the following format:
+    ------------------------------------------
+    |Patient identifier | Patient address    |
+    ------------------------------------------
+    |ID_001             | 123 Address st, ...|
+    (etc...)
+    ------------------------------------------
+    saveProgress - the number of geocodes conducted before a progress file is saved - this will occur alongside the live-save files
+    APIKEY - if an APIKEY is provided, it will be used. Otherwise, the APIKEY in keys.py will be used.
+
+    This batch geocoder has the dependency of the bing_geocode() function within this module.
 
     Author: Weber Liu
     Date Created: 25/09/2019
