@@ -57,7 +57,7 @@ def gmaps_geocode(Address, APIKEY=keys.GMAPS_APIKEY):
     '''
     return gmaps.gmaps_geocode(Address, APIKEY)
 
-def gmaps_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None):
+def gmaps_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startPos = 0):
     ''''
     gmaps_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None) is a function developed to query the google Maps geocoding API.
     This function takes in the argument of:
@@ -78,9 +78,12 @@ def gmaps_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None):
     '''
     data = load_data(fileLocation)
     height = data.shape[0]
-    geocodedOutput = pd.DataFrame()
+    if (startPos == 0):
+        geocodedOutput = pd.DataFrame()
+    else:
+        geocodedOutput = pd.read_csv("./Geocoded_output_gmaps.csv")
     print(height)
-    for i in range(height):
+    for i in range(startPos, height):
         originalData = data.iloc[i]
         od = pd.DataFrame(originalData).T
         od = od.reset_index()
@@ -121,7 +124,7 @@ def OSM_geocode(Address):
     '''
     return osm.OSM_geocode(Address)
 
-def OSM_batch_geocode(fileLocation, saveProgress = 200):
+def OSM_batch_geocode(fileLocation, saveProgress = 200, startPos = 0):
     ''''
     OSM_batch_geocode(fileLocation, saveProgress = 200) is a function developed to query the Nominatim geocoding API.
     This function takes in the argument of:
@@ -142,9 +145,12 @@ def OSM_batch_geocode(fileLocation, saveProgress = 200):
     '''
     data = load_data(fileLocation)
     height = data.shape[0]
-    geocodedOutput = pd.DataFrame()
+    if (startPos == 0):
+        geocodedOutput = pd.DataFrame()
+    else:
+        geocodedOutput = pd.read_csv("./Geocoded_output_OSM.csv")
     print(height)
-    for i in range(height):
+    for i in range(startPos, height):
         originalData = data.iloc[i]
         od = pd.DataFrame(originalData).T
         od = od.reset_index()
