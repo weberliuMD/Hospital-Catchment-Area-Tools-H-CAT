@@ -10,3 +10,4 @@ __pycache__
 #Temporary converted files
 *.csv
 *.csv
+Geocoded_output_OSM.csv
