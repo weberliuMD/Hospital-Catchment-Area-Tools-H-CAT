@@ -41,7 +41,7 @@ DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used wi
 - [ ] Yahoo! Maps Web Services Geocoding API (https://developer.yahoo.com/maps/rest/V1/geocode.html)
 - [ ] Melissa Geocoding (https://www.melissa.com/geocoding)
 
-*Non-Vietnam Geocoding systems
+*USA-only Geocoding systems
 - [ ] Texas A&M (USA) Geoservices (http://geoservices.tamu.edu/Services/Geocode/WebService/)
 - [ ] TIGER USA Geocoding (http://www.tigergeocoder.com/)
 
