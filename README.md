@@ -10,6 +10,11 @@ H-CAT is separated into two separate packages:
 * datasetnetworkanalysis(dsna)
 The files do not have to be used together, however it is optimal if files ARE used in conjunction. Consult individual documentations to determine how the individual packages should be used.  
 
+## DEPENDENCIES
+Before using any of the scripts, ensure you have installed (pip install)
+* requests
+* pandas
+
 ## datasetprep (dsp)
 datasetprep is a series of scripts, whose primary purpose is to prepare the original hospital file dataset for use with the datasetgeocode (dsg) package. It deals with data where:
 * Patient data is NOT de-identified, and needs to be de-identified
