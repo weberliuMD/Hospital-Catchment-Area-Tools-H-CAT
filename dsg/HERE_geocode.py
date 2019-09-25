@@ -1,7 +1,7 @@
 import requests
 import pandas as pd
 
-def here_geocode(Address, APIKEY):
+def here_geocode(Address, APP_ID, APP_CODE):
     '''
     here_geocode(Address) is a function developed to query the HERE geocoding API.
     This function takes in the argument of:
@@ -19,30 +19,26 @@ def here_geocode(Address, APIKEY):
     Author: Weber Liu
     Date Created: 25/09/2019
     '''
-    mapquestREST = "https://www.mapquestapi.com/geocoding/v1/address?key="
-    webAddress = mapquestREST + APIKEY + "&inFormat=kvp&outFormat=json&location=" + Address + "&thumbMaps=true"
+
+    HEREREST = "https://geocoder.api.here.com/6.2/geocode.json?app_id="
+    webAddress = HEREREST + APP_ID + "&app_code=" + APP_CODE + "&searchtext=" + Address
+
     print("Request sent to "+ webAddress)
     r = requests.get(webAddress).json()
-    # print(respData)
-    statuscode = r['info']['statuscode']
-    r = r['results'][0]['locations']
-    df = pd.DataFrame(r)
-    df['lat'] = df['latLng'][0]['lat']
-    df['lng'] = df['latLng'][0]['lng']
-    df = df.drop(['dragPoint', 'displayLatLng', 'latLng', 'type', 'unknownInput'], axis = 1)
-    df.columns = ['street', df['adminArea6Type'][0], 'aa6t', df['adminArea5Type'][0], 'aa5t', df['adminArea4Type'][0], 'aa4t', df['adminArea3Type'][0], 'aa3t', df['adminArea1Type'][0], 'aa1t', 'postalCode', 'geocodeQualityCode', 'geocodeQuality', 'sideOfStreet', 'linkId', 'mapUrl', 'lat', 'lng']
-    df = df.drop(['aa6t', 'aa5t', 'aa4t', 'aa3t', 'aa1t'], axis = 1)
-    while (df.shape[0] > 1):
-        removeLine = df.shape[0]-1
-        dConcat = pd.DataFrame(df.iloc[removeLine]).T
-        dConcat = dConcat.reset_index()
-        dConcat = dConcat.drop(['index'], axis = 1)
-        dConcat = dConcat.add_suffix("_lvl"+str(removeLine))
-        dConcat = dConcat.dropna(axis='columns')
-        df = df.drop([removeLine])
-        df = df.join(dConcat, lsuffix="_lvl"+str(removeLine-1), rsuffix="_lvl"+str(removeLine))
-        # df = pd.concat([df, dConcat], axis = 1)
-    df = df.assign(status = [statuscode])
-    return df
-
-    
+    r = r['Response']['View']
+    if (len(r) > 0):
+        numResults = len(r[0]['Result'])
+        df = pd.DataFrame()
+        for i in range(numResults):
+            r = r[0]['Result'][i]['Location']
+            locationId = pd.DataFrame({'locationId':[r['LocationId']]}).add_suffix("_"+str(i))
+            lat = pd.DataFrame({'lat':[r['NavigationPosition'][0]['Latitude']]}).add_suffix("_"+str(i))
+            lng = pd.DataFrame({'lng':[r['NavigationPosition'][0]['Longitude']]}).add_suffix("_"+str(i))
+            Address = pd.DataFrame([r['Address']]).drop(['AdditionalData'], axis = 1).add_suffix("_"+str(i))
+            df = pd.concat([df, Address, locationId, lat, lng], axis = 1)
+        statusCode = pd.DataFrame({'statusCode':['200']})
+        df = pd.concat([df, statusCode], axis = 1)
+        return df
+    else:
+        df = pd.DataFrame({'statusCode':['No data']})
+        return df
