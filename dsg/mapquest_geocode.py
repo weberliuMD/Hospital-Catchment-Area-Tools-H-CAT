@@ -24,21 +24,23 @@ def mapquest_geocode(Address, APIKEY):
     print("Request sent to "+ webAddress)
     r = requests.get(webAddress).json()
     # print(respData)
-    if len(r) != 0:
-        df = pd.DataFrame(r)
-        while (df.shape[0] > 1):
-            removeLine = df.shape[0]-1
-            dConcat = pd.DataFrame(df.iloc[removeLine]).T
-            dConcat = dConcat.reset_index()
-            dConcat = dConcat.drop(['index'], axis = 1)
-            dConcat = dConcat.add_suffix("_lvl"+str(removeLine))
-            dConcat = dConcat.dropna(axis='columns')
-            df = df.drop([removeLine])
-            df = df.join(dConcat, lsuffix="_lvl"+str(removeLine-1), rsuffix="_lvl"+str(removeLine))
-            # df = pd.concat([df, dConcat], axis = 1)
-        df = df.assign(status = ["200"])
-        return df
-    else:
-        df = pd.DataFrame()
-        df = df.assign(status = ["Address not found"])
-        return df
+    statuscode = r['info']['statuscode']
+    r = r['results'][0]['locations']
+    df = pd.DataFrame(r)
+    df['lat'] = df['latLng'][0]['lat']
+    df['lng'] = df['latLng'][0]['lng']
+    df = df.drop(['dragPoint', 'displayLatLng', 'latLng', 'type', 'unknownInput'], axis = 1)
+    df.columns = ['street', df['adminArea6Type'][0], 'aa6t', df['adminArea5Type'][0], 'aa5t', df['adminArea4Type'][0], 'aa4t', df['adminArea3Type'][0], 'aa3t', df['adminArea1Type'][0], 'aa1t', 'postalCode', 'geocodeQualityCode', 'geocodeQuality', 'sideOfStreet', 'linkId', 'mapUrl', 'lat', 'lng']
+    df = df.drop(['aa6t', 'aa5t', 'aa4t', 'aa3t', 'aa1t'], axis = 1)
+    while (df.shape[0] > 1):
+        removeLine = df.shape[0]-1
+        dConcat = pd.DataFrame(df.iloc[removeLine]).T
+        dConcat = dConcat.reset_index()
+        dConcat = dConcat.drop(['index'], axis = 1)
+        dConcat = dConcat.add_suffix("_lvl"+str(removeLine))
+        dConcat = dConcat.dropna(axis='columns')
+        df = df.drop([removeLine])
+        df = df.join(dConcat, lsuffix="_lvl"+str(removeLine-1), rsuffix="_lvl"+str(removeLine))
+        # df = pd.concat([df, dConcat], axis = 1)
+    df = df.assign(status = [statuscode])
+    return df
