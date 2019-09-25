@@ -6,3 +6,6 @@ keys.py
 
 #Python files
 __pycache__
+
+#Temporary converted files
+.csv
