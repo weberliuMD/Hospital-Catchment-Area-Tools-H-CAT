@@ -22,7 +22,11 @@ def OSM_geocode(Address):
     osmREST = "https://nominatim.openstreetmap.org/search?q="
     webAddress = osmREST + Address + "&format=json"
     print("Request sent to "+ webAddress)
-    r = requests.get(webAddress).json()
+    headers = {
+        'User-Agent': 'Hospital_PatientAddress_Geocode',
+        'From': 'weber.liu@sydney.edu.au'  # This is another valid field
+    }
+    r = requests.get(webAddress, headers=headers).json()
     # print(respData)
     if len(r) != 0:
         df = pd.DataFrame(r)

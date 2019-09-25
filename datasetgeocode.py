@@ -14,6 +14,8 @@ import keys
 #Imports for file loading
 import pandas as pd
 
+#import time to ensure no server overload
+import time
 
 def load_data (fileDir):
     '''
@@ -159,3 +161,4 @@ def OSM_batch_geocode(fileLocation, saveProgress = 200):
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
         except:
             print("Something went wrong, error was caught, moving on...")
+        time.sleep(1)
