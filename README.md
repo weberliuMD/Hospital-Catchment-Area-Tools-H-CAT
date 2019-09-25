@@ -54,7 +54,7 @@ The datasetgeocode (dsg) toolkit will provide individual modules for **singular 
 ## datasetrecombine (dsr)
 Following the Dataset separation by DatasetPrep, if necessary, this data will be recombined using the current library.
 
-## datasetnetworkanalysis(dsna)
+## datasetnetworkanalysis (dsna)
 Network analysis is necessary to determine the travel-time from an address to a certain location (in this case, the travel time from the patient's residence or ward centroid to the hospital).
 Using ward centroids, we enhance the de-identification process and can use a Boolean to determine if an address lies within a pre-defined 30-minutes catchment area from the hospital, based on various APIs.
 Using addresses, we can enhance the precision on top of a boolean, and implement K-means clustering to more accurately determine a 2km radiusfrom the hospital. This will be implemented alongside the **catchmentareatools(catch)** module.
@@ -73,7 +73,7 @@ The currently identified network analysis APIs which will be implemented include
 - [ ] Melissa street route API
 
 
-## catchmentareatools(catch)
+## catchmentareatools (catch)
 There are multiple ways of determining a catchment area of a hospital. 
 As I am not a statistician, the following list does not currently make sense to me, and things may be in the wrong position. More research into each catchment area system will be done soon, after completion of all tools listed above, in an orderly fashion.
 The following list is not complete, however attempts will be made to perform all following catchment area calculations:
