@@ -24,7 +24,8 @@ DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used wi
 - [x] Google Maps Geocoding API (https://developers.google.com/maps/documentation/geocoding)
 - [ ] Bing Maps REST Services (https://docs.microsoft.com/en-us/bingmaps/rest-services)
 - [ ] MAPQUEST developers Open Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
-- [ ] OpenStreetMaps(OSM) Nominatim Geocoder (https://nominatim.openstreetmap.org)
+- [x] OpenStreetMaps(OSM) 
+    - [x] Nominatim Geocoder (https://nominatim.openstreetmap.org)
     - [ ] NetToolkit Geocoding via OSM (https://www.nettoolkit.com)
     - [ ] LocationIQ Geocoding via OSM (https://locationiq.com/)
     - [ ] OpenCageData Geocoding via OSM (https://opencagedata.com/)
@@ -68,19 +69,19 @@ There are multiple ways of determining a catchment area of a hospital.
 As I am not a statistician, the following list does not currently make sense to me, and things may be in the wrong position. More research into each catchment area system will be done soon, after completion of all tools listed above, in an orderly fashion.
 The following list is not complete, however attempts will be made to perform all following catchment area calculations:
 1. Distance-based catchment area
-- 2SFCA
-- E2SFCA
-- 3SFCA
+    - 2SFCA
+    - E2SFCA
+    - 3SFCA
 2. Travel-time based
-- Lancet 30-minute rule (requires dsna module)
+    - Lancet 30-minute rule (requires dsna module)
 3. Patient-presentation based
-- KNN (K Nearest-Neighbours)
-- Kernel Density estimation
-- Monte Carlo simulation
-- SATScan
-- Moran's coefficient
-- FleXScan
-- EpiScan
-- MEET maximized excess event test
-- Empirical Bayes smoothing
-- Knox test
+    - KNN (K Nearest-Neighbours)
+    - Kernel Density estimation
+    - Monte Carlo simulation
+    - SATScan
+    - Moran's coefficient
+    - FleXScan
+    - EpiScan
+    - MEET maximized excess event test
+    - Empirical Bayes smoothing
+    - Knox test
