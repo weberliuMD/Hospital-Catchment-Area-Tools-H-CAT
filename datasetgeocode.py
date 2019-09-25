@@ -5,7 +5,7 @@ from dsg import gmaps_geocode as gmaps
 from dsg import HERE_geocode as here
 from dsg import mapquest_geocode as mq
 from dsg import OSM_geocode as osm
-# from dsg import tomtom_geocode as tomtom
+from dsg import tomtom_geocode as tomtom
 # from dsg import yahoo_geocode as yahoo
 
 #Import API Keys
@@ -104,6 +104,13 @@ def gmaps_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startPos 
                 fileName = "./Geocoded_output_gmaps_" + str(i) + "_PROGRESS.csv"
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
         except:
+            df = pd.DataFrame({'statusCode':['Error!']})
+            combinedData = pd.concat([od, df], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
             print("Something went wrong, error was caught, moving on...")
 
 def OSM_geocode(Address):
@@ -171,6 +178,13 @@ def OSM_batch_geocode(fileLocation, saveProgress = 200, startPos = 0, endPos = N
                 fileName = "./Geocoded_output_OSM_" + str(i) + "_PROGRESS.csv"
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
         except:
+            df = pd.DataFrame({'statusCode':['Error!']})
+            combinedData = pd.concat([od, df], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
             print("Something went wrong, error was caught, moving on...")
         time.sleep(1)
 
@@ -242,6 +256,13 @@ def mapquest_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startP
                 fileName = "./Geocoded_output_mapquest_" + str(i) + "_PROGRESS.csv"
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
         except:
+            df = pd.DataFrame({'statusCode':['Error!']})
+            combinedData = pd.concat([od, df], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
             print("Something went wrong, error was caught, moving on...")
 
 def mapquest_open_geocode(Address, APIKEY=keys.MAPQUEST_APIKEY):
@@ -312,6 +333,13 @@ def mapquest_open_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, s
                 fileName = "./Geocoded_output_mapquest_" + str(i) + "_PROGRESS.csv"
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
         except:
+            df = pd.DataFrame({'statusCode':['Error!']})
+            combinedData = pd.concat([od, df], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
             print("Something went wrong, error was caught, moving on...")
 
 def bing_geocode(Address, APIKEY=keys.BING_APIKEY):
@@ -381,6 +409,13 @@ def bing_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None, startPos =
                 fileName = "./Geocoded_output_bing_" + str(i) + "_PROGRESS.csv"
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
         except:
+            df = pd.DataFrame({'statusCode':['Error!']})
+            combinedData = pd.concat([od, df], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
             print("Something went wrong, error was caught, moving on...")
 
 def here_geocode(Address, APP_ID = keys.HERE_APPID, APP_CODE = keys.HERE_APPCODE):
@@ -451,4 +486,90 @@ def here_batch_geocode(fileLocation, saveProgress = 200, APP_ID = None, APP_CODE
                 fileName = "./Geocoded_output_here_" + str(i) + "_PROGRESS.csv"
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
         except:
+            df = pd.DataFrame({'statusCode':['Error!']})
+            combinedData = pd.concat([od, df], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
+            print("Something went wrong, error was caught, moving on...")
+
+
+def tomtom_geocode(Address, APIKEY = keys.TOMTOM_APIKEY):
+    '''
+    tomtom_geocode(Address) is a function developed to query the TomTom Search geocoding API.
+    This function takes in the argument of:
+    Address: The address of the patient, spaces allowed - fuzzy matching using TomTom's Algorithm
+    will clarify any issues. Provide as much detail as possible in the address.
+    APIKEY: The APIKEY as per TomTom developer (a sign-up will be required).
+
+    The gmaps REST-API will return a JSON dataset, and from that, this application will determine if the address
+    were entered correctly (i.e. status 200 OK), and then interpret the data into:
+    - Formatted Address (can be used for further geocoding with alternative systems)
+    - Geometry (Latitude and Longitude)
+    - TOMTOM api identifier ID
+    This data is then returned as a DataFrame to the user.
+
+    Author: Weber Liu
+    Date Created: 26/09/2019
+    '''
+    return tomtom.tomtom_geocode(Address, APIKEY)
+
+def tomtom_batch_geocode(fileLocation, saveProgress = 200, APIKEY = None, startPos = 0, endPos = None):
+    ''''
+    tomtom_batch_geocode(fileLocation, saveProgress = 200, APIKEY=None) is a function developed to query the TomTom maps geocoding API.
+    This function takes in the argument of:
+    fileLocation - the location of the .csv file in the following format:
+    ------------------------------------------
+    |Patient identifier | Patient address    |
+    ------------------------------------------
+    |ID_001             | 123 Address st, ...|
+    (etc...)
+    ------------------------------------------
+    saveProgress - the number of geocodes conducted before a progress file is saved - this will occur alongside the live-save files
+    APIKEY - the API Key for the application you obtain from the TomTom website
+
+    This batch geocoder has the dependency of the tomtom_geocode() function within this module.
+
+    Author: Weber Liu
+    Date Created: 26/09/2019
+    '''
+    data = load_data(fileLocation)
+    height = data.shape[0]
+    if (startPos == 0):
+        geocodedOutput = pd.DataFrame()
+    else:
+        geocodedOutput = pd.read_csv("./Geocoded_output_tomtom.csv")
+    if (endPos == None):
+        endPos = height
+        print("end position is", height)
+    for i in range(startPos, endPos):
+        originalData = data.iloc[i]
+        od = pd.DataFrame(originalData).T
+        od = od.reset_index()
+        od = od.drop(['index'], axis=1)
+        try:
+            geocodedData = None
+            if APIKEY == None:
+                geocodedData = tomtom_geocode(data.iloc[i][1])
+            else:
+                geocodedData = tomtom_geocode(Address=data.iloc[i][1], APIKEY = APIKEY)
+            print("combining data")
+            combinedData = pd.concat([od, geocodedData], axis=1)
+            print("appending data to list")
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            print("Completed row", i)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
+        except:
+            df = pd.DataFrame({'statusCode':['Error!']})
+            combinedData = pd.concat([od, df], axis=1)
+            geocodedOutput = geocodedOutput.append(combinedData, ignore_index = True, sort=False)
+            export_csv = geocodedOutput.to_csv('./Geocoded_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
             print("Something went wrong, error was caught, moving on...")

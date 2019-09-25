@@ -37,10 +37,10 @@ DatasetGeocode's primary purpose is to geocode 'prepared' datasets to be used wi
     - [ ] OpenCageData Geocoding via OSM (https://opencagedata.com/)
     - [x] Mapquest developers OPEN Geocoding API (https://developer.mapquest.com/documentation/open/geocoding-api/)
 - [x] HERE Geocoding API (https://developer.here.com/documentation/geocoder/topics/what-is.html)
-- [ ] ARCGIS REST API (https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm) - **PAID SERVICE**
-- [ ] TOMTOM Geocoding API (https://developer.tomtom.com/search-api/search-api-documentation-geocoding/geocode)
-- [ ] Yahoo! Maps Web Services Geocoding API (https://developer.yahoo.com/maps/rest/V1/geocode.html)
-- [ ] Melissa Geocoding (https://www.melissa.com/geocoding)
+- ARCGIS REST API (https://developers.arcgis.com/rest/geocode/api-reference/geocoding-geocode-addresses.htm) - **PAID SERVICE**
+- [x] TOMTOM Geocoding API (https://developer.tomtom.com/search-api/search-api-documentation-geocoding/geocode)
+- Yahoo! Maps Web Services Geocoding API (https://developer.yahoo.com/maps/rest/V1/geocode.html) - **DEPRECATED**
+- Melissa Geocoding (https://www.melissa.com/geocoding) - **PAID SERVICE**
 
 *USA-only Geocoding systems
 - [ ] Texas A&M (USA) Geoservices (http://geoservices.tamu.edu/Services/Geocode/WebService/)
@@ -70,6 +70,7 @@ The currently identified network analysis APIs which will be implemented include
     - [ ] YOUR NAvication (http://yournavigation.org/)
     - [ ] Graphhopper(https://graphhopper.com/)
 - [ ] Tomtom Routing API
+- [ ] Melissa street route API
 
 
 ## catchmentareatools(catch)
