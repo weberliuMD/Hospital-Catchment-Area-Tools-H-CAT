@@ -1,5 +1,4 @@
-import urllib3
-import json
+import requests
 import pandas as pd
 
 def gmaps_geocode(Address, APIKEY):
@@ -23,9 +22,7 @@ def gmaps_geocode(Address, APIKEY):
     gmapsREST = "https://maps.googleapis.com/maps/api/geocode/json?address="
     webAddress = gmapsREST + Address + "&key=" + APIKEY
     print("Request sent to "+ webAddress)
-    http = urllib3.PoolManager()
-    r = http.request('GET', webAddress)
-    r = json.loads(r.data.decode('utf-8'))
+    r = requests.get(webAddress).json()
     # print(respData)
     if r['status'] == 'OK':
         formattedAddress = r['results'][0]['formatted_address'] #formattedAddress is a str
