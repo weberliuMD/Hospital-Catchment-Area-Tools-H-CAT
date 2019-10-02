@@ -573,3 +573,61 @@ def tomtom_batch_geocode(fileLocation, saveProgress = 200, APIKEY = None, startP
                 fileName = "./Geocoded_output_tomtom_" + str(i) + "_PROGRESS.csv"
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
             print("Something went wrong, error was caught, moving on...")
+
+def tomtom_batch_fuzzysearch(fileLocation, saveProgress = 200, APIKEY = None, startPos = 0, endPos = None):
+    ''''
+    tomtom_batch_fuzzysearch(fileLocation, saveProgress = 200, APIKEY=None) is a function developed to query the TomTom maps geocoding API.
+    This function takes in the argument of:
+    fileLocation - the location of the .csv file in the following format:
+    ------------------------------------------
+    |Patient identifier | Patient address    |
+    ------------------------------------------
+    |ID_001             | 123 Address st, ...|
+    (etc...)
+    ------------------------------------------
+    saveProgress - the number of geocodes conducted before a progress file is saved - this will occur alongside the live-save files
+    APIKEY - the API Key for the application you obtain from the TomTom website
+
+    This batch fuzzySearcher has the dependency of the tomtom_fuzzySearch() function within this module.
+
+    Author: Weber Liu
+    Date Created: 02/10/2019
+    '''
+    data = load_data(fileLocation)
+    height = data.shape[0]
+    if (startPos == 0):
+        fuzzyOutput = pd.DataFrame()
+    else:
+        fuzzyOutput = pd.read_csv("./Fuzzysearch_output_tomtom.csv")
+    if (endPos == None):
+        endPos = height
+        print("end position is", height)
+    for i in range(startPos, endPos):
+        originalData = data.iloc[i]
+        od = pd.DataFrame(originalData).T
+        od = od.reset_index()
+        od = od.drop(['index'], axis=1)
+        try:
+            fuzzyData = None
+            if APIKEY == None:
+                fuzzyData = tomtom_fuzzysearch(data.iloc[i][1])
+            else:
+                fuzzyData = tomtom_fuzzysearch(Address=data.iloc[i][1], APIKEY = APIKEY)
+            print("combining data")
+            combinedData = pd.concat([od, fuzzyData], axis=1)
+            print("appending data to list")
+            fuzzyOutput = fuzzyOutput.append(combinedData, ignore_index = True, sort=False)
+            print("Completed row", i)
+            export_csv = fuzzyOutput.to_csv('./Fuzzysearch_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Fuzzysearch_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = fuzzyOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
+        except:
+            df = pd.DataFrame({'statusCode':['Error!']})
+            combinedData = pd.concat([od, df], axis=1)
+            fuzzyOutput = fuzzyOutput.append(combinedData, ignore_index = True, sort=False)
+            export_csv = fuzzyOutput.to_csv('./Fuzzysearch_output_tomtom.csv', index = False, header=True, encoding='utf_8_sig')
+            if (i % saveProgress == 0):
+                fileName = "./Fuzzysearch_output_tomtom_" + str(i) + "_PROGRESS.csv"
+                export_csv = fuzzyOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
+            print("Something went wrong, error was caught, moving on...")
