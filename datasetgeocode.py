@@ -574,6 +574,26 @@ def tomtom_batch_geocode(fileLocation, saveProgress = 200, APIKEY = None, startP
                 export_csv = geocodedOutput.to_csv(fileName, index = False, header=True, encoding='utf_8_sig')
             print("Something went wrong, error was caught, moving on...")
 
+def tomtom_fuzzysearch(Address, APIKEY = keys.TOMTOM_APIKEY):
+    '''
+    tomtom_geocode(Address) is a function developed to query the TomTom Search geocoding API.
+    This function takes in the argument of:
+    Address: The address of the patient, spaces allowed - fuzzy matching using TomTom's Algorithm
+    will clarify any issues. Provide as much detail as possible in the address.
+    APIKEY: The APIKEY as per TomTom developer (a sign-up will be required).
+
+    The gmaps REST-API will return a JSON dataset, and from that, this application will determine if the address
+    were entered correctly (i.e. status 200 OK), and then interpret the data into:
+    - Formatted Address (can be used for further geocoding with alternative systems)
+    - Geometry (Latitude and Longitude)
+    - TOMTOM api identifier ID
+    This data is then returned as a DataFrame to the user.
+
+    Author: Weber Liu
+    Date Created: 26/09/2019
+    '''
+    return tomtom.tomtom_fuzzysearch(Address, APIKEY)
+
 def tomtom_batch_fuzzysearch(fileLocation, saveProgress = 200, APIKEY = None, startPos = 0, endPos = None):
     ''''
     tomtom_batch_fuzzysearch(fileLocation, saveProgress = 200, APIKEY=None) is a function developed to query the TomTom maps geocoding API.
